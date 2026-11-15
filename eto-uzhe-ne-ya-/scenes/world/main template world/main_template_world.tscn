@@ -1,11 +1,7 @@
-[gd_scene format=4 uid="uid://jyvvvhnljte8"]
+[gd_scene format=3 uid="uid://jyvvvhnljte8"]
 
 [ext_resource type="Texture2D" uid="uid://cc8yd40gsj3ef" path="res://assets/tileset/Tileset.png" id="1_8vlyq"]
-[ext_resource type="Texture2D" uid="uid://c275up01oyklt" path="res://assets/tileset/3 Objects/Benches/1.png" id="2_ey74h"]
 [ext_resource type="Texture2D" uid="uid://cc2os07qn24ia" path="res://assets/tileset/2 Background/Day/Background.png" id="2_mu78f"]
-[ext_resource type="PackedScene" uid="uid://dd1xpbckhaepl" path="res://scenes/characters/main/character.tscn" id="2_o0qg1"]
-[ext_resource type="PackedScene" uid="uid://dbk6jag163fg6" path="res://scenes/traps/proximity/fallingfloor_trap.tscn" id="4_gu17j"]
-[ext_resource type="PackedScene" uid="uid://c2dkv7xmljc43" path="res://scenes/traps/spikes/spikes.tscn" id="4_so1rh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gu17j"]
 texture = ExtResource("1_8vlyq")
@@ -17,6 +13,7 @@ texture_region_size = Vector2i(32, 32)
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:1/0 = 0
 2:1/0 = 0
 4:0/0 = 0
@@ -31,6 +28,7 @@ texture_region_size = Vector2i(32, 32)
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 5:1/0 = 0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:2/0 = 0
 2:2/0 = 0
 3:2/0 = 0
@@ -39,12 +37,16 @@ texture_region_size = Vector2i(32, 32)
 3:4/0 = 0
 2:4/0 = 0
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 4:3/0 = 0
 3:3/0 = 0
 2:3/0 = 0
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 8:0/0 = 0
 9:0/0 = 0
 10:0/0 = 0
@@ -57,6 +59,9 @@ texture_region_size = Vector2i(32, 32)
 9:2/0 = 0
 6:3/0 = 0
 5:3/0 = 0
+3:0/0 = 0
+1:5/0 = 0
+0:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_n3khc"]
 physics_layer_0/collision_layer = 1
@@ -72,20 +77,6 @@ position = Vector2(574.00006, 326)
 scale = Vector2(1.9947916, 1.9891975)
 texture = ExtResource("2_mu78f")
 
-[node name="Banco" type="Sprite2D" parent="BackgroundLayer" unique_id=31080104]
-position = Vector2(32, 584)
-texture = ExtResource("2_ey74h")
-
 [node name="WallsLayer" type="TileMapLayer" parent="." unique_id=1403615432]
 position = Vector2(-5, 136)
-tile_map_data = PackedByteArray("AAABAB0AAgAAAAAAAAADAB0AAgABAAAAAAAFAB0AAgACAAAAAAADAB8AAgABAAEAAAAFAB8AAgADAAEAAAABAB8AAgAAAAEAAAAJAB0AAgAAAAAAAAANAB0AAgACAAAAAAANAB8AAgADAAEAAAAJAB8AAgAAAAEAAAA=")
 tile_set = SubResource("TileSet_n3khc")
-
-[node name="Character" parent="." unique_id=1295161105 instance=ExtResource("2_o0qg1")]
-position = Vector2(70, 575)
-
-[node name="ProximityTrap" parent="." unique_id=797550777 instance=ExtResource("4_gu17j")]
-position = Vector2(179, 625)
-
-[node name="Spikes" parent="." unique_id=911536316 instance=ExtResource("4_so1rh")]
-position = Vector2(213, 586)

@@ -1,0 +1,60 @@
+[gd_scene format=4 uid="uid://dch6sbcdc5q5h"]
+
+[ext_resource type="PackedScene" uid="uid://jyvvvhnljte8" path="res://scenes/world/main template world/main_template_world.tscn" id="1_x6ivy"]
+[ext_resource type="PackedScene" uid="uid://dd1xpbckhaepl" path="res://scenes/characters/main/character.tscn" id="2_4tcl0"]
+[ext_resource type="Texture2D" uid="uid://c275up01oyklt" path="res://assets/tileset/3 Objects/Benches/1.png" id="2_bfxgj"]
+[ext_resource type="Texture2D" uid="uid://b288y1iyed64e" path="res://assets/tileset/3 Objects/Other/Tree1.png" id="3_dywbp"]
+[ext_resource type="PackedScene" uid="uid://dbk6jag163fg6" path="res://scenes/traps/proximity/fallingfloor_trap.tscn" id="5_1seuy"]
+[ext_resource type="PackedScene" uid="uid://c2dkv7xmljc43" path="res://scenes/traps/spikes/spikes.tscn" id="5_dywbp"]
+[ext_resource type="Texture2D" uid="uid://cc8yd40gsj3ef" path="res://assets/tileset/Tileset.png" id="6_2r1tl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4tcl0"]
+load_path = "res://.godot/imported/Background.png-2a944ffe78f8b7b8b340fa221a31ae8a.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a7m2"]
+atlas = ExtResource("6_2r1tl")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1seuy"]
+size = Vector2(63, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r1tl"]
+size = Vector2(66, 21)
+
+[node name="Main template world" unique_id=2066714845 instance=ExtResource("1_x6ivy")]
+
+[node name="BackgroundWorld" parent="BackgroundLayer" parent_id_path=PackedInt32Array(1641985731) index="0" unique_id=966160252]
+texture = SubResource("CompressedTexture2D_4tcl0")
+
+[node name="bench" type="Sprite2D" parent="BackgroundLayer" parent_id_path=PackedInt32Array(1641985731) index="1" unique_id=162414742]
+position = Vector2(59, 549)
+texture = ExtResource("2_bfxgj")
+
+[node name="Tree1" type="Sprite2D" parent="BackgroundLayer" parent_id_path=PackedInt32Array(1641985731) index="2" unique_id=878749245]
+position = Vector2(98, 509)
+texture = ExtResource("3_dywbp")
+
+[node name="WallsLayer" parent="." index="1" unique_id=1403615432]
+tile_map_data = PackedByteArray("AAABABIAAgACAAAAAAABABYAAgABAAUAAAABABgAAgABAAUAAAABABoAAgABAAUAAAABABwAAgABAAUAAAABAB4AAgABAAUAAAABACAAAgABAAUAAAABABQAAgACAAEAAAD//xIAAgABAAAAAAD//xQAAgABAAEAAAD//xYAAgADAAAAAAD//xgAAgADAAAAAAD//xoAAgADAAAAAAD//xwAAgADAAAAAAD//x4AAgADAAAAAAD//yAAAgADAAAAAAADABsAAgABAAAAAAAFABsAAgABAAAAAAAHABsAAgABAAAAAAAJABsAAgABAAAAAAALABsAAgABAAAAAAANABsAAgABAAAAAAADAB0AAgABAAEAAAAFAB0AAgABAAEAAAAHAB0AAgABAAEAAAAJAB0AAgABAAEAAAALAB0AAgABAAEAAAANAB0AAgABAAEAAAANAB8AAgADAAAAAAAMAB8AAgADAAAAAAALAB8AAgADAAAAAAAKAB8AAgADAAAAAAAJAB8AAgADAAAAAAAIAB8AAgADAAAAAAAHAB8AAgADAAAAAAAGAB8AAgADAAAAAAAFAB8AAgADAAAAAAAEAB8AAgADAAAAAAADAB8AAgADAAAAAAAPABsAAgACAAAAAAAPAB0AAgACAAEAAAAPAB4AAgABAAUAAAAXABsAAgACAAAAAAAXAB0AAgADAAEAAAAXAB8AAgABAAUAAAAPAB8AAgABAAUAAAA=")
+
+[node name="Spikes" parent="WallsLayer" index="0" unique_id=911536316 instance=ExtResource("5_dywbp")]
+position = Vector2(373, 418)
+
+[node name="FallingFloor" parent="WallsLayer" index="1" unique_id=1650113391 instance=ExtResource("5_1seuy")]
+position = Vector2(328, 473)
+
+[node name="Sprite2D" parent="WallsLayer/FallingFloor" index="0" unique_id=722602371]
+texture = SubResource("AtlasTexture_8a7m2")
+
+[node name="CollisionShape2D" parent="WallsLayer/FallingFloor/Area2D" parent_id_path=PackedInt32Array(1650113391, 52068493) index="0" unique_id=1776547392]
+position = Vector2(3.5, -42)
+shape = SubResource("RectangleShape2D_1seuy")
+
+[node name="CollisionShape2D" parent="WallsLayer/FallingFloor/StaticBody2D" parent_id_path=PackedInt32Array(1650113391, 1347446722) index="0" unique_id=1069095740]
+position = Vector2(2, -38)
+shape = SubResource("RectangleShape2D_2r1tl")
+
+[node name="Character" parent="." index="2" unique_id=1295161105 instance=ExtResource("2_4tcl0")]
+position = Vector2(71, 544)
+
+[editable path="WallsLayer/FallingFloor"]

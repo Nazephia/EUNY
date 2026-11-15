@@ -18,7 +18,6 @@ void FallingFloor::_bind_methods() {}
 void FallingFloor::trigger_effect() {
     if (!is_falling) {
         is_falling = true;
-        godot::UtilityFunctions::print("¡Suelo falso pisado!");
     }
 }
 
