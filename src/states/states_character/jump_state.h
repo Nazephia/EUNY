@@ -3,7 +3,11 @@
 
 class JumpState : public CharacterMovementState {
 public:
-    void enter(Character *character) override {}
+    void enter(Character *character) override {
+        if (character->get_animated_sprite()) {
+            character->get_animated_sprite()->play("jump");
+        }
+    }
 
     void update(Character *character, double delta) override {
         if (character->is_on_floor()) {

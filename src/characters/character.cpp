@@ -2,14 +2,30 @@
 
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
+#include "../states/state_machine.h"
+#include "../states/states_character/idle_state.h"
+#include "../states/states_character/walk_state.h"
+#include "../states/states_character/jump_state.h"
 
 Character::Character(){
 	speed = 300.0;
 	jump_velocity = -400.0;
 	gravity = godot::ProjectSettings::get_singleton()->get_setting("physics/2d/default_gravity");
+	animated_sprite = nullptr;
+	state_machine = new StateMachine(this);
 }
 
-Character::~Character(){}
+Character::~Character(){
+	delete state_machine;
+}
+
+void Character::_ready(){
+	animated_sprite = get_node<godot::AnimatedSprite2D>("AnimatedSprite2D");
+	state_machine->add_state("idle", new IdleState());
+	state_machine->add_state("walk", new WalkState());
+	state_machine->add_state("jump", new JumpState());
+	state_machine->change_state("idle");
+}
 
 
 void Character::_bind_methods() {
@@ -32,27 +48,12 @@ void Character::_physics_process(double delta) {
 	}
 
 	godot::Vector2 velocity = get_velocity();
-
 	if(!is_on_floor()){
 		velocity.y += gravity * delta;
 	}
-
-	godot::Input *input = godot::Input::get_singleton();
-	if(input->is_action_just_pressed("ui_accept") && is_on_floor()){
-		velocity.y = jump_velocity;
-	}
-
-	double direction = 0.0;
-	if(input->is_action_pressed("ui_right")) direction += 1.0;
-	if(input->is_action_pressed("ui_left")) direction -= 1.0;
-
-	if(direction != 0.0){
-		velocity.x = direction * speed;
-	} else {
-		velocity.x = godot::Math::move_toward(static_cast<double>(velocity.x), 0.0, speed * 8.0 * delta);
-	}
-
 	set_velocity(velocity);
+	state_machine->update(delta);
+	state_machine->physics_update(delta);
 	move_and_slide();
 }
 
@@ -64,3 +65,5 @@ double Character::get_jump_velocity() const { return jump_velocity; }
 void Character::set_jump_velocity(double p_jump_velocity) { jump_velocity = p_jump_velocity; }
 
 double Character::get_gravity() const { return gravity; }
+StateMachine *Character::get_state_machine() const { return state_machine; }
+godot::AnimatedSprite2D *Character::get_animated_sprite() const { return animated_sprite; }

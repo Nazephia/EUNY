@@ -5,7 +5,7 @@ class IdleState : public CharacterMovementState {
 public:
     void enter(Character *character) override {
         if (character->get_animated_sprite()) {
-            character->get_animated_sprite()->play("Idle");
+            character->get_animated_sprite()->play("idle");
         }
     }
 

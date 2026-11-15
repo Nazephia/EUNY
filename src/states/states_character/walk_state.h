@@ -5,7 +5,7 @@ class WalkState : public CharacterMovementState {
 public:
     void enter(Character *character) override {
         if (character->get_animated_sprite()) {
-            character->get_animated_sprite()->play("Walk");
+            character->get_animated_sprite()->play("walk");
         }
     }
 
