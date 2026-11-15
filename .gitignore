@@ -1,0 +1,7 @@
+# SCons build metadata
+.sconsign.dblite
+
+# Local editor settings
+.vscode/
+*.o
+*.os
