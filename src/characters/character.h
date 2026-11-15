@@ -16,6 +16,7 @@ class Character : public godot::CharacterBody2D {
 	double gravity;
 	godot::AnimatedSprite2D *animated_sprite;
 	StateMachine *state_machine;
+	godot::Vector2 spawn_position;
 
 	protected:
 	static void _bind_methods();
@@ -27,6 +28,7 @@ class Character : public godot::CharacterBody2D {
 	// Movimiento
 	virtual void _physics_process(double delta) override;
 	virtual void _ready() override;
+	void respawn();
 
 	// Metodos Get y Set para las variables privadas
 	double get_speed() const;

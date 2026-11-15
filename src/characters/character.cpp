@@ -1,15 +1,17 @@
 #include "character.h"
 
 #include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include "../states/state_machine.h"
 #include "../states/states_character/idle_state.h"
 #include "../states/states_character/walk_state.h"
 #include "../states/states_character/jump_state.h"
+#include "../traps/trap.h"
 
 Character::Character(){
-	speed = 300.0;
-	jump_velocity = -400.0;
+	speed = 200.0;
+	jump_velocity = -320.0;
 	gravity = godot::ProjectSettings::get_singleton()->get_setting("physics/2d/default_gravity");
 	animated_sprite = nullptr;
 	state_machine = new StateMachine(this);
@@ -25,6 +27,9 @@ void Character::_ready(){
 	state_machine->add_state("walk", new WalkState());
 	state_machine->add_state("jump", new JumpState());
 	state_machine->change_state("idle");
+	
+	spawn_position = get_global_position();
+
 }
 
 
@@ -39,6 +44,8 @@ void Character::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("set_jump_velocity", "jump_velocity"), &Character::set_jump_velocity);
     godot::ClassDB::bind_method(godot::D_METHOD("get_jump_velocity"), &Character::get_jump_velocity);
 	ADD_PROPERTY(godot::PropertyInfo(godot::Variant::FLOAT, "jump_velocity"), "set_jump_velocity", "get_jump_velocity");
+
+	godot::ClassDB::bind_method(godot::D_METHOD("respawn"), &Character::respawn);
 }
 
 
@@ -54,8 +61,25 @@ void Character::_physics_process(double delta) {
 	set_velocity(velocity);
 	state_machine->update(delta);
 	state_machine->physics_update(delta);
+
+	if(get_global_position().y > 1000.0){
+		respawn();
+	}
+
 	move_and_slide();
 }
+
+void Character::respawn(){
+	set_global_position(spawn_position);
+	set_velocity(godot::Vector2(0,0));
+
+	godot::TypedArray<Node> traps = get_tree()->get_nodes_in_group("traps");
+		for(std::size_t i = 0; i < traps.size(); i++){
+			Trap *trap = godot::Object::cast_to<Trap>(traps[i]);
+			if(trap) trap->reset_trap();
+		}
+}
+
 
 // Metodos Get y Set para las variables privadas
 double Character::get_speed() const { return speed; }

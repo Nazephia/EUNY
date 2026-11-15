@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dbk6jag163fg6"]
+
+[ext_resource type="Texture2D" uid="uid://cc8yd40gsj3ef" path="res://assets/tileset/Tileset.png" id="1_adl2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adl2v"]
+atlas = ExtResource("1_adl2v")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3khc"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv7a3"]
+size = Vector2(32, 21)
+
+[node name="FallingFloor" type="FallingFloor" unique_id=1650113391 groups=["traps"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=722602371]
+position = Vector2(0, -1)
+texture = SubResource("AtlasTexture_adl2v")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=52068493]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1776547392]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_n3khc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1347446722]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1069095740]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_fv7a3")

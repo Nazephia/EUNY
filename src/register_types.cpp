@@ -3,6 +3,12 @@
 #include <godot_cpp/godot.hpp>
 
 #include "characters/character.h"
+#include "traps/trap.h"
+#include "traps/proximity/proximity_trap.h"
+#include "traps/proximity/fallling_floor/falling_floor.h"
+#include "traps/death_zone.h"
+#include "traps/spikes.h"
+
 
 using namespace godot;
 
@@ -12,6 +18,13 @@ void initialize_euny_module(ModuleInitializationLevel p_level) {
 	}
 
 	GDREGISTER_CLASS(Character);
+	GDREGISTER_ABSTRACT_CLASS(Trap);
+	GDREGISTER_CLASS(ProximityTrap);
+	GDREGISTER_CLASS(FallingFloor);
+
+	GDREGISTER_CLASS(DeathZone);
+	GDREGISTER_CLASS(Spikes);
+
 }
 
 void uninitialize_euny_module(ModuleInitializationLevel p_level) {

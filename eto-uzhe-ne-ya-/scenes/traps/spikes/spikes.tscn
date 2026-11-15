@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c2dkv7xmljc43"]
+
+[ext_resource type="Texture2D" uid="uid://dleef3wui8m20" path="res://assets/tileset/Traps/spikes.png" id="1_3mib7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv7a3"]
+atlas = ExtResource("1_3mib7")
+region = Rect2(190, 384, 874, 568)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mib7"]
+size = Vector2(18, 12)
+
+[node name="Node2D" type="Node2D" unique_id=911536316]
+
+[node name="Spikes" type="Spikes" parent="." unique_id=811732711]
+
+[node name="Sprite2D" type="Sprite2D" parent="Spikes" unique_id=1948818067]
+scale = Vector2(0.020733653, 0.022328548)
+texture = SubResource("AtlasTexture_fv7a3")
+
+[node name="Area2D" type="Area2D" parent="Spikes" unique_id=430875796]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes/Area2D" unique_id=1805591778]
+shape = SubResource("RectangleShape2D_3mib7")
