@@ -18,5 +18,5 @@ public:
     void _ready() override;
     
     void trigger_effect() override; 
-    void _on_body_entered(Node2D *body);
+    virtual void _on_body_entered(Node2D *body);
 };

@@ -8,6 +8,9 @@
 #include "traps/proximity/fallling_floor/falling_floor.h"
 #include "traps/death_zone.h"
 #include "traps/spikes.h"
+#include "traps/flying_spikes.h"
+#include "traps/dart/dart.h"
+#include "traps/dart/dart_launcher.h"
 
 
 using namespace godot;
@@ -24,7 +27,9 @@ void initialize_euny_module(ModuleInitializationLevel p_level) {
 
 	GDREGISTER_CLASS(DeathZone);
 	GDREGISTER_CLASS(Spikes);
-
+	GDREGISTER_CLASS(FlyingSpikes);
+	GDREGISTER_CLASS(Dart);
+	GDREGISTER_CLASS(DartLauncher);
 }
 
 void uninitialize_euny_module(ModuleInitializationLevel p_level) {

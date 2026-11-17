@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b288y1iyed64e" path="res://assets/tileset/3 Objects/Other/Tree1.png" id="3_dywbp"]
 [ext_resource type="PackedScene" uid="uid://dbk6jag163fg6" path="res://scenes/traps/proximity/fallingfloor_trap.tscn" id="5_1seuy"]
 [ext_resource type="PackedScene" uid="uid://c2dkv7xmljc43" path="res://scenes/traps/spikes/spikes.tscn" id="5_dywbp"]
-[ext_resource type="Texture2D" uid="uid://cc8yd40gsj3ef" path="res://assets/tileset/Tileset.png" id="6_2r1tl"]
+[ext_resource type="Texture2D" uid="uid://6a70tpeexrum" path="res://assets/tileset/Tileset.png" id="6_2r1tl"]
+[ext_resource type="Texture2D" uid="uid://b66okuxp1m6qe" path="res://assets/tileset/Platform and andamios.png" id="7_8a7m2"]
+[ext_resource type="PackedScene" uid="uid://dedi8m4bbdqjo" path="res://scenes/traps/dart/dart.tscn" id="8_5ntmo"]
+[ext_resource type="Texture2D" uid="uid://ddait0wbald22" path="res://assets/tileset/Launchables/DartLauncher.png" id="9_nkeig"]
+[ext_resource type="PackedScene" uid="uid://d0741jasxnxp7" path="res://scenes/traps/spikes/flying_spikes.tscn" id="10_nkeig"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4tcl0"]
 load_path = "res://.godot/imported/Background.png-2a944ffe78f8b7b8b340fa221a31ae8a.ctex"
@@ -21,9 +25,25 @@ size = Vector2(63, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r1tl"]
 size = Vector2(66, 21)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r1tl"]
+atlas = ExtResource("7_8a7m2")
+region = Rect2(24, 184, 176, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plydf"]
+size = Vector2(18, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ntmo"]
+size = Vector2(41.98976, 6.9996643)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3khc"]
+atlas = ExtResource("9_nkeig")
+region = Rect2(76, 661, 241, 249)
+
 [node name="Main template world" unique_id=2066714845 instance=ExtResource("1_x6ivy")]
 
 [node name="BackgroundWorld" parent="BackgroundLayer" parent_id_path=PackedInt32Array(1641985731) index="0" unique_id=966160252]
+position = Vector2(577.25006, 326)
+scale = Vector2(2.0060763, 1.9891975)
 texture = SubResource("CompressedTexture2D_4tcl0")
 
 [node name="bench" type="Sprite2D" parent="BackgroundLayer" parent_id_path=PackedInt32Array(1641985731) index="1" unique_id=162414742]
@@ -35,12 +55,24 @@ position = Vector2(98, 509)
 texture = ExtResource("3_dywbp")
 
 [node name="WallsLayer" parent="." index="1" unique_id=1403615432]
-tile_map_data = PackedByteArray("AAABABIAAgACAAAAAAABABYAAgABAAUAAAABABgAAgABAAUAAAABABoAAgABAAUAAAABABwAAgABAAUAAAABAB4AAgABAAUAAAABACAAAgABAAUAAAABABQAAgACAAEAAAD//xIAAgABAAAAAAD//xQAAgABAAEAAAD//xYAAgADAAAAAAD//xgAAgADAAAAAAD//xoAAgADAAAAAAD//xwAAgADAAAAAAD//x4AAgADAAAAAAD//yAAAgADAAAAAAADABsAAgABAAAAAAAFABsAAgABAAAAAAAHABsAAgABAAAAAAAJABsAAgABAAAAAAALABsAAgABAAAAAAANABsAAgABAAAAAAADAB0AAgABAAEAAAAFAB0AAgABAAEAAAAHAB0AAgABAAEAAAAJAB0AAgABAAEAAAALAB0AAgABAAEAAAANAB0AAgABAAEAAAANAB8AAgADAAAAAAAMAB8AAgADAAAAAAALAB8AAgADAAAAAAAKAB8AAgADAAAAAAAJAB8AAgADAAAAAAAIAB8AAgADAAAAAAAHAB8AAgADAAAAAAAGAB8AAgADAAAAAAAFAB8AAgADAAAAAAAEAB8AAgADAAAAAAADAB8AAgADAAAAAAAPABsAAgACAAAAAAAPAB0AAgACAAEAAAAPAB4AAgABAAUAAAAXABsAAgACAAAAAAAXAB0AAgADAAEAAAAXAB8AAgABAAUAAAAPAB8AAgABAAUAAAA=")
+tile_map_data = PackedByteArray("AAABABIAAgACAAAAAAABABYAAgABAAUAAAABABgAAgABAAUAAAABABoAAgABAAUAAAABABwAAgABAAUAAAABAB4AAgABAAUAAAABACAAAgABAAUAAAABABQAAgACAAEAAAD//xIAAgABAAAAAAD//xQAAgABAAEAAAD//xYAAgADAAAAAAD//xgAAgADAAAAAAD//xoAAgADAAAAAAD//xwAAgADAAAAAAD//x4AAgADAAAAAAD//yAAAgADAAAAAAADABsAAgABAAAAAAAFABsAAgABAAAAAAAHABsAAgABAAAAAAAJABsAAgABAAAAAAALABsAAgABAAAAAAANABsAAgABAAAAAAADAB0AAgABAAEAAAAFAB0AAgABAAEAAAAHAB0AAgABAAEAAAAJAB0AAgABAAEAAAALAB0AAgABAAEAAAANAB0AAgABAAEAAAANAB8AAgADAAAAAAAMAB8AAgADAAAAAAALAB8AAgADAAAAAAAKAB8AAgADAAAAAAAJAB8AAgADAAAAAAAIAB8AAgADAAAAAAAHAB8AAgADAAAAAAAGAB8AAgADAAAAAAAFAB8AAgADAAAAAAAEAB8AAgADAAAAAAADAB8AAgADAAAAAAAPABsAAgACAAAAAAAPAB0AAgACAAEAAAAPAB4AAgABAAUAAAAXABsAAgACAAAAAAAXAB0AAgADAAEAAAAXAB8AAgABAAUAAAAPAB8AAgABAAUAAAAeABoAAgAAAAAAAAAgABoAAgABAAAAAAAiABoAAgABAAAAAAAkABoAAgABAAAAAAAmABoAAgABAAAAAAAoABoAAgABAAAAAAAqABoAAgACAAAAAAAeABwAAgAAAAEAAAAeAB4AAgAAAAUAAAAeACAAAgAAAAUAAAAgABwAAgABAAEAAAAiABwAAgABAAEAAAAkABwAAgABAAEAAAAmABwAAgABAAEAAAAoABwAAgABAAEAAAAqABwAAgACAAEAAAAqAB4AAgABAAUAAAAqACAAAgABAAUAAAAgAB4AAgADAAAAAAAiAB4AAgADAAAAAAAkAB4AAgADAAAAAAAlAB4AAgADAAAAAAAmAB4AAgADAAAAAAAnAB4AAgADAAAAAAAoAB4AAgADAAAAAAAoAB8AAgADAAAAAAAoACAAAgADAAAAAAAnACAAAgADAAAAAAAmACAAAgADAAAAAAAlACAAAgADAAAAAAAkACAAAgADAAAAAAAjACAAAgADAAAAAAAiACAAAgADAAAAAAAhACAAAgADAAAAAAAgACAAAgADAAAAAAAaABcAAgAFAAEAAAAuABgAAgAFAAEAAAA0ABcAAgAFAAEAAABBABQAAgAAAAAAAABDABQAAgABAAAAAABFABQAAgABAAAAAABHABQAAgABAAAAAABBABYAAgAAAAEAAABBABgAAgAAAAUAAABBABoAAgAAAAUAAABBABwAAgAAAAUAAABBAB4AAgAAAAUAAABBACAAAgAAAAUAAABDABYAAgABAAEAAABDABgAAgADAAAAAABDABoAAgADAAAAAABDABwAAgADAAAAAABDAB4AAgADAAAAAABDACAAAgADAAAAAABFABgAAgADAAAAAABFABoAAgADAAAAAABFABwAAgADAAAAAABFAB4AAgADAAAAAABFACAAAgADAAAAAABHACAAAgADAAAAAABJACAAAgADAAAAAABJAB4AAgADAAAAAABHAB4AAgADAAAAAABHABwAAgADAAAAAABJABwAAgADAAAAAABJABoAAgADAAAAAABHABoAAgADAAAAAABHABgAAgADAAAAAABJABgAAgADAAAAAABFABYAAgABAAEAAABHABYAAgABAAEAAABJABYAAgABAAEAAABJABQAAgABAAAAAAA6ABQAAgAFAAEAAABIABIAAgAAAAUAAABIABAAAgAAAAUAAABIAA4AAgAAAAUAAABIAAwAAgAAAAEAAABIAAoAAgAAAAAAAAA=")
 
 [node name="Spikes" parent="WallsLayer" index="0" unique_id=911536316 instance=ExtResource("5_dywbp")]
-position = Vector2(373, 418)
+position = Vector2(372, 418)
 
-[node name="FallingFloor" parent="WallsLayer" index="1" unique_id=1650113391 instance=ExtResource("5_1seuy")]
+[node name="Spikes2" parent="WallsLayer" index="1" unique_id=173437659 instance=ExtResource("5_dywbp")]
+position = Vector2(508, 402)
+
+[node name="Spikes3" parent="WallsLayer" index="2" unique_id=1521091529 instance=ExtResource("5_dywbp")]
+position = Vector2(526, 402)
+
+[node name="Spikes4" parent="WallsLayer" index="3" unique_id=783921379 instance=ExtResource("5_dywbp")]
+position = Vector2(554, 402)
+
+[node name="Spikes5" parent="WallsLayer" index="4" unique_id=1799772707 instance=ExtResource("5_dywbp")]
+position = Vector2(580, 402)
+
+[node name="FallingFloor" parent="WallsLayer" index="5" unique_id=1650113391 instance=ExtResource("5_1seuy")]
 position = Vector2(328, 473)
 
 [node name="Sprite2D" parent="WallsLayer/FallingFloor" index="0" unique_id=722602371]
@@ -54,7 +86,57 @@ shape = SubResource("RectangleShape2D_1seuy")
 position = Vector2(2, -38)
 shape = SubResource("RectangleShape2D_2r1tl")
 
+[node name="first_platform" parent="WallsLayer" index="6" unique_id=1893926820 instance=ExtResource("5_1seuy")]
+position = Vector2(489, 489)
+
+[node name="Sprite2D" parent="WallsLayer/first_platform" index="0" unique_id=722602371]
+position = Vector2(-66.5, -31.5)
+scale = Vector2(0.24431819, 0.3068182)
+texture = SubResource("AtlasTexture_2r1tl")
+
+[node name="CollisionShape2D" parent="WallsLayer/first_platform/Area2D" parent_id_path=PackedInt32Array(1893926820, 52068493) index="0" unique_id=1776547392]
+position = Vector2(-54, -45)
+shape = SubResource("RectangleShape2D_plydf")
+
+[node name="StaticBody2D" parent="WallsLayer/first_platform" index="2" unique_id=1347446722]
+visible = true
+
+[node name="CollisionShape2D" parent="WallsLayer/first_platform/StaticBody2D" index="0" unique_id=1069095740]
+position = Vector2(-66.00513, -41.499817)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_5ntmo")
+
+[node name="DartLauncher" type="DartLauncher" parent="WallsLayer" index="7" unique_id=2053570366]
+dart_scene = ExtResource("8_5ntmo")
+position = Vector2(1082, 302)
+scale = Vector2(-1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="WallsLayer/DartLauncher" index="0" unique_id=379163728]
+position = Vector2(-0.12500429, -2.8750038)
+scale = Vector2(0.117219955, 0.10341368)
+texture = SubResource("AtlasTexture_n3khc")
+
+[node name="Marker2D" type="Marker2D" parent="WallsLayer/DartLauncher" index="1" unique_id=1078382067]
+position = Vector2(11, -3)
+rotation = 3.1385765
+
+[node name="RayCast2D" type="RayCast2D" parent="WallsLayer/DartLauncher" index="2" unique_id=1689324051]
+position = Vector2(10, -3)
+rotation = 3.1415834
+target_position = Vector2(-143.99994, -7.0013123)
+
+[node name="FlyingSpikes" parent="WallsLayer" index="8" unique_id=1727644228 instance=ExtResource("10_nkeig")]
+position = Vector2(598, 402)
+
+[node name="RayCast2D" parent="WallsLayer/FlyingSpikes" index="0" unique_id=1024999306]
+target_position = Vector2(-17, 32)
+
+[node name="Marker2D" parent="WallsLayer/FlyingSpikes" index="2" unique_id=1930924334]
+position = Vector2(28, -1)
+
 [node name="Character" parent="." index="2" unique_id=1295161105 instance=ExtResource("2_4tcl0")]
-position = Vector2(71, 544)
+position = Vector2(387, 544)
 
 [editable path="WallsLayer/FallingFloor"]
+[editable path="WallsLayer/first_platform"]
+[editable path="WallsLayer/FlyingSpikes"]

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cagqshn22tktf"]
+
+[ext_resource type="Texture2D" uid="uid://ddait0wbald22" path="res://assets/tileset/Launchables/DartLauncher.png" id="1_1f0eo"]
+[ext_resource type="PackedScene" uid="uid://dedi8m4bbdqjo" path="res://scenes/traps/dart/dart.tscn" id="1_mybrr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3khc"]
+atlas = ExtResource("1_1f0eo")
+region = Rect2(76, 661, 241, 249)
+
+[node name="DartLauncher" type="DartLauncher" unique_id=2053570366]
+dart_scene = ExtResource("1_mybrr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=379163728]
+position = Vector2(-0.12500429, -2.8750038)
+scale = Vector2(0.117219955, 0.10341368)
+texture = SubResource("AtlasTexture_n3khc")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1078382067]
+position = Vector2(11, -3)
+rotation = 3.1385765
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1689324051]
+position = Vector2(10, -3)
+rotation = 3.1415834
+target_position = Vector2(-66, -0.0006079674)

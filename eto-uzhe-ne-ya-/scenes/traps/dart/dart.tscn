@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dedi8m4bbdqjo"]
+
+[ext_resource type="Texture2D" uid="uid://cpil3a1lredek" path="res://assets/tileset/Launchables/dart.png" id="1_l64ru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chhkg"]
+atlas = ExtResource("1_l64ru")
+region = Rect2(756, 252, 660, 220)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_n3khc"]
+a = Vector2(-6, -2)
+b = Vector2(9, -2)
+
+[node name="Dart" type="Dart" unique_id=1816925924 groups=["traps"]]
+position = Vector2(0, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1097450452]
+position = Vector2(1.0000001, -2)
+scale = Vector2(0.024242423, 0.02727273)
+texture = SubResource("AtlasTexture_chhkg")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1617984428]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=411982740]
+shape = SubResource("SegmentShape2D_n3khc")

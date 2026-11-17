@@ -7,7 +7,13 @@ atlas = ExtResource("1_3mib7")
 region = Rect2(190, 384, 874, 568)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mib7"]
-size = Vector2(18, 12)
+size = Vector2(18, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a185"]
+size = Vector2(10, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o3ju"]
+size = Vector2(4, 3)
 
 [node name="Node2D" type="Node2D" unique_id=911536316]
 
@@ -20,4 +26,13 @@ texture = SubResource("AtlasTexture_fv7a3")
 [node name="Area2D" type="Area2D" parent="Spikes" unique_id=430875796]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes/Area2D" unique_id=1805591778]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_3mib7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spikes/Area2D" unique_id=511036303]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_3a185")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Spikes/Area2D" unique_id=1058042367]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_6o3ju")
