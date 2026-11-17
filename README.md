@@ -11,3 +11,6 @@ Desarollo de videojuego de plataformas y trampas.
 
 #### Teclas
 `Space` Para saltar, uso de flechas `right` y `left` para el moviento repectivamente.
+
+
+[![Descargar beta v0.1](https://img.shields.io/badge/Descargar-Beta%20v0.1-blue)](https://github.com/Nazephia/EUNY/releases/tag/beta-v0.1)
