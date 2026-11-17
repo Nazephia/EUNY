@@ -135,7 +135,7 @@ target_position = Vector2(-17, 32)
 position = Vector2(28, -1)
 
 [node name="Character" parent="." index="2" unique_id=1295161105 instance=ExtResource("2_4tcl0")]
-position = Vector2(387, 544)
+position = Vector2(72, 542)
 
 [editable path="WallsLayer/FallingFloor"]
 [editable path="WallsLayer/first_platform"]

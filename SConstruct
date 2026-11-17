@@ -8,11 +8,19 @@ import sys
 # This lets SCons know that we're using godot-cpp, from the godot-cpp folder.
 env = SConscript("godot-cpp/SConstruct")
 
+if env["platform"] == "windows":
+    env["SHLIBPREFIX"] = ""
+
 # Configures the 'src' directory as a source for header files.
 env.Append(CPPPATH=["src/"])
 
 # Collects C++ sources from the 'src' folder and its class directories.
-sources = Glob("src/*.cpp") + Glob("src/*/*.cpp")
+sources = (
+    Glob("src/*.cpp")
+    + Glob("src/*/*.cpp")
+    + Glob("src/*/*/*.cpp")
+    + Glob("src/*/*/*/*.cpp")
+)
 
 # The filename for the dynamic library for this GDExtension.
 # $SHLIBPREFIX is a platform specific prefix for the dynamic library ('lib' on Unix, '' on Windows).

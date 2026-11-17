@@ -159,8 +159,9 @@ slide_on_ceiling = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1287252730]
 sprite_frames = SubResource("SpriteFrames_n3khc")
 animation = &"idle"
-frame_progress = 0.41926655
+frame_progress = 0.8137201
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=101284571]
+visible = false
 position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_fv7a3")
