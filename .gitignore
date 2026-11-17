@@ -5,4 +5,14 @@
 .vscode/
 *.o
 *.os
+*.so
+*.dll
+*.exe
+*.pck
+*.a
+*.lib
+*.dylib
+*.x86_64
 src/.godot
+Screenshots/
+eto-uzhe-ne-ya-/bin/*
